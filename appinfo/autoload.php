@@ -1,6 +1,6 @@
 <?php
 /**
- * ownCloud - mediametadata
+ * ownCloud - trialapp
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -9,7 +9,7 @@
  * @copyright Jalpreet Singh Nanda (:imjalpreet) 2016
  */
 
-namespace OCA\MediaMetadata\AppInfo;
+namespace OCA\TrialApp\AppInfo;
 
 use OCP\AppFramework\App;
 

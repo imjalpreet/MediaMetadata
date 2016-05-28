@@ -8,7 +8,7 @@
 	<charset>utf8</charset>
 
 	<table>
-		<name>*dbprefix*mediametadata_image_size</name>
+		<name>*dbprefix*media_metadata_image_size</name>
 
 		<declaration>
 
