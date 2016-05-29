@@ -11,51 +11,21 @@
 
 namespace OCA\TrialApp\Hooks;
 
-use OC\Files\Node;
-use OC\Files\Node\Root;
-use OC\Search\Provider\File;
-use OCA\TrialApp\Services\TrialImage;
-use OCA\TrialApp\Services\TrialImageMapper;
+
+use OCA\TrialApp\AppInfo\Application;
 
 class FileHooksStatic {
-	protected $mapper;
-	protected $dataDirectory;
-	protected $root;
-
-	/**
-	 * @param Root $root
-	 * @param TrialImageMapper $mapper
-	 * @param $dataDirectory
-	 */
-
-	public function __construct(Root $root, TrialImageMapper $mapper, $dataDirectory) {
-		$this->root = $root;
-		$this->mapper = $mapper;
-		$this->dataDirectory = $dataDirectory;
+	static protected function getHooks() {
+		$app = new Application();
+		return $app->getContainer()->query('FileHooks');
 	}
 
-	public function post_Create($params) {
-		//TODO: Get FULL PATH
-		$absolutePath = $this->dataDirectory . $params['path'];
+	public static function postCreate($params) {
+		// Log the path
+		$logger = \OC::$server->getLogger();
+		$logger->log('debug', $params['path'], array('app' => 'TrialApp'));
 
-		$dimensions = getimagesize($absolutePath);
-
-		if ($dimensions !== false) {
-			list($width, $height) = $dimensions;
-
-			//LOG the dimensions
-			$logger = \OC::$server->getLogger();
-			$logger->log('debug', $dimensions, array('app' => 'TrialApp'));
-
-			$trialImage = new TrialImage();
-
-			//TODO: Get Image ID
-			//$trialImage->setImageId();
-
-			$trialImage->setImageHeight($height);
-			$trialImage->setImageWidth($width);
-
-			$this->mapper->insert($trialImage);
-		}
+		//TODO: Complete the post_Create function
+		//self::getHooks()->post_Create($params);
 	}
 }

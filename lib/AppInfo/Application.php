@@ -32,10 +32,10 @@ class Application extends App {
 			);
 		});
 
-		$container->registerService('FileHooksStatic', function(IContainer $Container) {
+		$container->registerService('FileHooks', function(IContainer $Container) {
 			$server = $Container->query('ServerContainer');
 
-			return new FileHooksStatic(
+			return new FileHooks(
 				$server->getRootFolder(),
 				$Container->query('TrialImageMapper'),
 				$server->getConfig()->getSystemValue('datadirectory')

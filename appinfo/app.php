@@ -38,4 +38,4 @@ $container = $app->getContainer();
 //	];
 //});
 
-\OCP\Util::connectHook('OC_Filesystem', 'post_create', 'OCA\TrialApp\hooks\FileHooks', 'postCreate');
+\OCP\Util::connectHook('OC_Filesystem', 'post_create', 'OCA\TrialApp\hooks\FileHooksStatic', 'postCreate');
